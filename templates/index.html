@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>House Price Predictor</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-image: url('https://img.freepik.com/free-photo/macro-shot-increase-mortgage-rate-concept_53876-14718.jpg?w=1060&t=st=1709800345~exp=1709800945~hmac=403de2a28430427d924f9e13918c0777567fcf6e4d5b0f530b466d43f309e35b');
+        background-size: cover;
+        color: #FFFFFF;
+        overflow: hidden;
+    }
+    .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+    .header-bar {
+        background-color: #363538;
+        padding: 10px 0;
+    }
+    h1 {
+        font-family: Courier New, monospace;
+        font-size: 36px;
+    }
+    h2, p {
+        font-size: 18px;
+    }
+    input[type="file"] {
+        color: #FFFFFF;
+        display: none;
+    }
+    #file-input-label {
+        color: #000000;
+        background-color: #8D8C8A;
+        padding: 10px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+    #file-label-container {
+        margin-top: 20px;
+    }
+    #evaluate-btn {
+        background-color: #8D8C8A;
+        color: #000000;
+        border: none;
+        padding: 10px 20px;
+        font-size: 18px;
+        border-radius: 10px;
+        cursor: pointer;
+        position: fixed;
+        bottom: 130px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    #info-window {
+        position: fixed;
+        top: 20%;
+        right: 0;
+        width: 20%;
+        max-height: 80%;
+        overflow-y:hidden;
+        background-color: rgba(109, 145, 151, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        border-style: solid;
+        border-color: white;
+        text-align: justify;
+        text-justify:auto;  
+    }
+    /* Added style for copyright text */
+    .copyright-bar {
+        background-color: #363538;
+        padding: 10px 0;
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+    .copyright {
+        color: #FFFFFF;
+        font-size: 14px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-bar">
+        <h1>House Price Prediction</h1>
+        <p>Predict Housing Prices at a location using supplied Dataset.</p>
+        <form id="upload-form" action="/evaluate" method="post" enctype="multipart/form-data">
+            <label id="file-input-label" for="dataset">Choose file</label>
+            <input type="file" name="dataset" id="dataset" accept=".csv">
+        </form>
+        <div id="file-label-container">
+            <label for="dataset">No file chosen</label>
+        </div>
+    </div>
+</div>
+
+<button type="button" id="evaluate-btn">Predict Prices</button>
+
+<!-- Copyright text -->
+<div class="copyright-bar">
+    <p class="copyright">Copyright &copy; Adityaram 2024</p>
+</div>
+
+<script>
+    document.getElementById('dataset').addEventListener('change', function(){
+        var fileInput = document.getElementById('dataset');
+        var fileLabel = document.querySelector('#file-label-container label');
+        fileLabel.textContent = fileInput.files[0].name || 'No file chosen';
+    });
+
+    document.getElementById('evaluate-btn').addEventListener('click', function(){
+        document.getElementById('upload-form').submit();
+    });
+</script>
+
+</body>
+</html>
